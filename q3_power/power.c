@@ -18,8 +18,7 @@
  * @return Calculated power in watts
  */
 float calculate_power(float voltage, float current) {
-    // TODO: Implement power calculation
-    return 0.0f;  // Placeholder
+    return voltage * current;
 }
 
 /**
@@ -28,7 +27,9 @@ float calculate_power(float voltage, float current) {
  * @return 1 if valid (<=5.0W), 0 if invalid
  */
 int is_valid_power(float power) {
-    // TODO: Implement power validation logic
+    if (power <= 5.0f)
+    return 1;
+    else
     return 0;  // Placeholder
 }
 
@@ -39,9 +40,23 @@ int main(void) {
 
     printf("Power Calculator for Chip Validation\n");
     printf("Maximum allowed power: %.1fW\n", max_power);
+    
+    printf ("Enter voltage (V): ");
+    scanf ("%f", &voltage);
+    
+    printf ("Enter current (A): ");
+    scanf ("%f", &current);
 
-    // TODO: Read voltage and current, calculate power, and validate
-    // Read voltage and current, calculate power, and validate
+    power = calculate_power(voltage, current);
+    
+    printf ("\nCalculated Power: %.2f W\n", power);
+    
+    if (is_valid_power (power)) {
+    printf ("PASS: Power is within safe limit\n");
+    }
+    else {
+    printf ("FAIL: Power exceeds safe limit\n");
+    }
 
     return 0;
 }
